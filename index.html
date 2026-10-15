@@ -88,6 +88,61 @@
       .services-grid, .gallery, .reviews-grid { grid-template-columns:1fr; }
       .hero { padding:80px 20px 70px; }
     }
+
+    /* ---- Animations ---- */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:none; } }
+    @keyframes pulse { 0%,100% { box-shadow:0 0 18px rgba(255,255,255,0.35); } 50% { box-shadow:0 0 34px rgba(255,255,255,0.9); } }
+    @keyframes shine { from { transform:translateX(-140%); } to { transform:translateX(240%); } }
+
+    .hero-copy h1 { animation:fadeUp .8s cubic-bezier(.2,.7,.3,1) both; }
+    .hero-copy p { animation:fadeUp .8s cubic-bezier(.2,.7,.3,1) .12s both; }
+    .hero-actions { animation:fadeUp .8s cubic-bezier(.2,.7,.3,1) .24s both; }
+    .hero-meta { animation:fadeUp .8s cubic-bezier(.2,.7,.3,1) .36s both; }
+    .brand-dot { animation:pulse 3s ease-in-out infinite; }
+
+    .reveal { opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1); }
+    .reveal.in { opacity:1; transform:none; }
+
+    .service-card, .review-card, .contact-card { transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .service-card:hover, .review-card:hover, .contact-card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,0.35); box-shadow:0 14px 30px rgba(0,0,0,0.5); }
+
+    .gallery-item { transition:transform .4s ease, border-color .4s ease; }
+    .gallery-item img { transition:transform .6s cubic-bezier(.2,.7,.3,1); }
+    .gallery-item:hover { transform:translateY(-3px); border-color:rgba(255,255,255,0.3); }
+    .gallery-item:hover img { transform:scale(1.06); }
+
+    .btn { position:relative; overflow:hidden; }
+    .btn::after { content:""; position:absolute; top:0; left:0; width:45%; height:100%; background:linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent); transform:translateX(-140%); pointer-events:none; }
+    .btn:hover::after { animation:shine .9s ease; }
+
+    /* ---- Stats ---- */
+    .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .stat { background:linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(20,20,20,0.98) 100%), var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; text-align:center; transition:transform .25s ease, border-color .25s ease; }
+    .stat:hover { transform:translateY(-4px); border-color:rgba(255,255,255,0.3); }
+    .stat .num { font-size:clamp(26px,3.4vw,40px); font-weight:700; letter-spacing:-0.02em; }
+    .stat .lbl { color:var(--sub); font-size:14px; }
+
+    /* ---- Prices ---- */
+    .price-list { display:flex; flex-direction:column; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--card); }
+    .price-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 22px; border-bottom:1px solid var(--line); transition:background-color .25s ease, padding-left .25s ease; }
+    .price-row:last-child { border-bottom:none; }
+    .price-row:hover { background-color:rgba(255,255,255,0.05); padding-left:30px; }
+    .price-row .name { font-weight:600; }
+    .price-row .desc { color:var(--sub); font-size:14px; }
+    .price-row .val { font-weight:700; white-space:nowrap; }
+    .price-note { color:var(--sub); font-size:13px; margin-top:14px; }
+
+    @media (max-width:900px) { .stats { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:680px) {
+      .price-row { flex-direction:column; align-items:flex-start; gap:4px; }
+      .price-row:hover { padding-left:22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-copy h1, .hero-copy p, .hero-actions, .hero-meta, .brand-dot { animation:none; }
+      .reveal { opacity:1; transform:none; transition:none; }
+      .btn:hover::after { animation:none; }
+    }
   </style>
 </head>
 <body>
@@ -96,6 +151,7 @@
       <a class="brand" href="#top"><span class="brand-dot"></span><span>Harlem park</span></a>
       <div class="nav-links">
         <a href="#services">Услуги</a>
+        <a href="#prices">Цены</a>
         <a href="#works">Работы</a>
         <a href="#reviews">Отзывы</a>
         <a href="#lead">Заявка</a>
@@ -123,11 +179,17 @@
     </div>
   </section>
   <main>
+    <section class="stats reveal" id="stats">
+      <div class="stat"><div class="num" data-count="5" data-decimals="1">0.0</div><div class="lbl">рейтинг в 2ГИС</div></div>
+      <div class="stat"><div class="num" data-count="73">0</div><div class="lbl">отзыва клиентов</div></div>
+      <div class="stat"><div class="num" data-count="7">0</div><div class="lbl">услуг в прайсе</div></div>
+      <div class="stat"><div class="num">10:00–22:00</div><div class="lbl">ежедневно</div></div>
+    </section>
     <section id="services">
       <div class="section-head">
         <span class="eyebrow">Услуги</span>
         <h2>Основные направления</h2>
-        <p>Комплексный уход за кузовом и салоном. Точные цены определяются по автомобилю и объёму работ — просим рассчитать стоимость по заявке.</p>
+        <p>Комплексный уход за кузовом и салоном. Актуальные цены — в разделе «Цены», точную стоимость под ваш автомобиль рассчитаем по заявке.</p>
       </div>
       <div class="services-grid">
         <article class="service-card">
@@ -163,7 +225,46 @@
           <p>Подбор и расчёт под конкретный автомобиль. Всегда индивидуальный подход.</p>
         </article>
       </div>
-      <p class="note">Цены — по запросу. Оставьте заявку, мы рассчитаем стоимость за 15–20 минут.</p>
+      <p class="note">Актуальные цены — в разделе «Цены». Оставьте заявку, и мы рассчитаем точную стоимость под ваш автомобиль.</p>
+    </section>
+
+    <section id="prices">
+      <div class="section-head">
+        <span class="eyebrow">Цены</span>
+        <h2>Актуальный прайс</h2>
+        <p>Цены из карточки Harlem park в 2ГИС. Итоговая стоимость зависит от автомобиля и объёма работ — уточняйте при записи.</p>
+      </div>
+      <div class="price-list">
+        <div class="price-row">
+          <div><div class="name">Полировка автомобиля</div><div class="desc">Восстановительная и защитная полировка кузова</div></div>
+          <div class="val">от 15 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><div class="name">Химчистка автомобиля</div><div class="desc">Глубокая химчистка салона, озонирование</div></div>
+          <div class="val">15 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><div class="name">Нанесение керамики</div><div class="desc">Защитное керамическое покрытие ЛКП</div></div>
+          <div class="val">10 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><div class="name">Нанесение воска на кузов</div><div class="desc">Поддерживающий уход с гидрофобным эффектом</div></div>
+          <div class="val">6 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><div class="name">Тонирование автомобиля</div><div class="desc">Тонировка стёкол, плёнка</div></div>
+          <div class="val">от 5 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><div class="name">Бронирование зон риска</div><div class="desc">Антигравийная плёнка (PPF) на зоны риска</div></div>
+          <div class="val">от 55 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><div class="name">Оклейка автомобиля винилом</div><div class="desc">Смена цвета, полная или частичная оклейка</div></div>
+          <div class="val">от 150 000 ₽</div>
+        </div>
+      </div>
+      <p class="price-note">Цены предоставлены владельцем фирмы и не являются публичной офертой.</p>
     </section>
 
     <section id="works">
@@ -328,6 +429,50 @@
         status.textContent = 'Не удалось отправить онлайн. Откроется звонок — наберите или напишите нам в WhatsApp/VK.';
       }
     });
+
+    // Reveal-on-scroll
+    const revealTargets = document.querySelectorAll('main > section, .service-card, .review-card, .contact-card, .gallery-item, .price-row');
+    revealTargets.forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = ((i % 8) * 60) + 'ms';
+    });
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealTargets.forEach((el) => io.observe(el));
+    } else {
+      revealTargets.forEach((el) => el.classList.add('in'));
+    }
+
+    // Animated counters
+    const counters = document.querySelectorAll('[data-count]');
+    const runCount = (el) => {
+      const target = parseFloat(el.dataset.count);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const dur = 1400;
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = (target * eased).toFixed(decimals);
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toFixed(decimals);
+      };
+      requestAnimationFrame(tick);
+    };
+    if ('IntersectionObserver' in window) {
+      const io2 = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { runCount(en.target); io2.unobserve(en.target); }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach((c) => io2.observe(c));
+    } else {
+      counters.forEach((c) => { c.textContent = parseFloat(c.dataset.count).toFixed(parseInt(c.dataset.decimals || '0', 10)); });
+    }
   </script>
 </body>
 </html>
