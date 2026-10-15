@@ -38,8 +38,9 @@
     .btn:hover { transform:translateY(-1px); border-color:rgba(255,255,255,0.95); background-color:rgba(255,255,255,0.06); }
     .btn-ghost { border-color:var(--line); box-shadow:none; color:var(--sub); }
     main { display:flex; flex-direction:column; gap:80px; padding:0 20px; }
-    .hero { position:relative; max-width:none; margin:0 0 80px; padding:120px 20px 100px; background-image:linear-gradient(180deg, rgba(10,10,10,0.62) 0%, rgba(10,10,10,0.82) 100%), url('assets/photos/car-hero.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat; border-bottom:1px solid var(--line); }
-    .hero-copy { max-width:760px; margin:0 auto; text-align:center; }
+    .hero { position:relative; max-width:none; margin:0 0 80px; padding:120px 20px 100px; min-height:clamp(460px, 64vw, 820px); display:flex; align-items:center; justify-content:center; background-image:linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.72) 100%), url('assets/photos/car-hero.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat; }
+    .hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:170px; background:linear-gradient(180deg, rgba(10,10,10,0) 0%, var(--bg) 100%); pointer-events:none; }
+    .hero-copy { position:relative; z-index:1; max-width:760px; margin:0 auto; text-align:center; }
     .hero-copy h1 { font-size:clamp(32px, 5vw, 66px); line-height:1.08; margin-bottom:16px; letter-spacing:-0.02em; }
     .hero-copy p { color:var(--sub); margin:0 auto 26px; max-width:580px; }
     .hero-actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:28px; }
