@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harlem park — детейлинг-центр в Екатеринбурге</title>
+  <meta name="description" content="Детейлинг-центр Harlem park в Екатеринбурге. Мойка, полировка, защита ЛКП, химчистка салона, броня фар. Ялтинский переулок, 8. +7 929 202-18-05.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --panel: #101010;
+      --text: #e6e6e6;
+      --sub: #b9b9b9;
+      --line: #1f1f1f;
+      --accent: #d9b54c;
+      --accent2: #bfa040;
+      --card: #141414;
+      --input: #161616;
+      --radius: 12px;
+      --shadow: 0 20px 40px rgba(0,0,0,0.45), 0 10px 20px rgba(217,181,76,0.15);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    html { scroll-behavior:smooth; }
+    body { background: radial-gradient(1200px 800px at 80% -10%, #1a1608 0%, transparent 60%), var(--bg); color:var(--text); line-height:1.7; }
+    a { color:inherit; text-decoration:none; }
+    header { position:sticky; top:0; z-index:20; background:rgba(11,11,11,0.8); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+    nav { max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px; gap:16px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; font-size:12px; }
+    .brand-dot { width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #fff3cc, var(--accent)); box-shadow:0 0 24px rgba(217,181,76,0.6); }
+    .nav-links { display:flex; gap:18px; flex-wrap:wrap; font-size:14px; color:var(--sub); }
+    .nav-links a:hover { color:var(--text); }
+    .cta { display:flex; gap:10px; align-items:center; }
+    .btn { display:inline-flex; align-items:center; gap:8px; border-radius:999px; padding:10px 18px; border:1px solid rgba(217,181,76,0.6); color:var(--text); font-size:14px; font-weight:600; box-shadow:var(--shadow); transition:transform 120ms ease, border-color 120ms ease; }
+    .btn:hover { transform:translateY(-1px); border-color:rgba(217,181,76,0.9); }
+    .btn-ghost { border-color:var(--line); box-shadow:none; color:var(--sub); }
+    main { display:flex; flex-direction:column; gap:80px; padding:0 20px; }
+    .hero { max-width:1180px; margin:60px auto 0; display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center; }
+    .hero-copy h1 { font-size:clamp(32px, 5vw, 64px); line-height:1.08; margin-bottom:16px; letter-spacing:-0.02em; }
+    .hero-copy p { color:var(--sub); margin-bottom:26px; max-width:560px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:28px; }
+    .hero-meta { display:flex; gap:18px; flex-wrap:wrap; color:var(--sub); font-size:14px; }
+    .hero-media { position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow); aspect-ratio:16/10; }
+    .hero-media img { width:100%; height:100%; object-fit:cover; filter:saturate(1.05); }
+    section { max-width:1180px; margin:0 auto; width:100%; }
+    .section-head { display:flex; flex-direction:column; gap:6px; margin-bottom:26px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:0.18em; font-size:12px; color:var(--accent); }
+    .section-head h2 { font-size:clamp(26px, 4vw, 44px); letter-spacing:-0.01em; }
+    .section-head p { color:var(--sub); max-width:700px; }
+    .services-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; }
+    .service-card { background:linear-gradient(180deg, rgba(217,181,76,0.12) 0%, rgba(16,16,16,0.9) 100%), var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:10px; min-height:150px; }
+    .service-card h3 { font-size:18px; }
+    .service-card p { color:var(--sub); font-size:14px; }
+    .note { margin-top:18px; color:var(--sub); font-size:14px; }
+    .gallery { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+    .gallery-item { position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); aspect-ratio:16/10; }
+    .gallery-item img { width:100%; height:100%; object-fit:cover; }
+    .reviews-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+    .review-card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:12px; }
+    .stars { display:flex; gap:4px; color:var(--accent); font-size:14px; }
+    .review-text { color:var(--sub); font-size:14px; }
+    .review-author { font-weight:600; font-size:14px; }
+    .lead { background:radial-gradient(900px 600px at 50% -20%, rgba(217,181,76,0.25) 0%, transparent 60%), linear-gradient(180deg, rgba(16,16,16,0.9) 0%, rgba(11,11,11,1) 100%); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:60px 20px; }
+    .lead-inner { max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:start; }
+    .lead-form { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:28px; display:flex; flex-direction:column; gap:16px; box-shadow:var(--shadow); }
+    .form-row { display:flex; flex-direction:column; gap:8px; }
+    label { font-size:14px; color:var(--sub); }
+    input, select, textarea { background:var(--input); border:1px solid var(--line); border-radius:10px; padding:12px 14px; color:var(--text); font-size:15px; }
+    textarea { min-height:110px; resize:vertical; }
+    .form-actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .form-note { color:var(--sub); font-size:13px; }
+    .contacts-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+    .contact-card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; display:flex; flex-direction:column; gap:10px; }
+    .contact-card h3 { font-size:16px; }
+    .contact-card p, .contact-card a { color:var(--sub); font-size:14px; }
+    footer { max-width:1180px; margin:0 auto; padding:30px 20px 60px; display:flex; flex-direction:column; gap:10px; color:var(--sub); font-size:14px; }
+    @media (max-width:1100px) {
+      .hero, .lead-inner { grid-template-columns:1fr; }
+      .services-grid { grid-template-columns:repeat(2, 1fr); }
+      .gallery { grid-template-columns:repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns:repeat(2, 1fr); }
+      .contacts-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:680px) {
+      nav { flex-direction:column; align-items:flex-start; }
+      .services-grid, .gallery, .reviews-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="#top"><span class="brand-dot"></span><span>Harlem park</span></a>
+      <div class="nav-links">
+        <a href="#services">Услуги</a>
+        <a href="#works">Работы</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#lead">Заявка</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <div class="cta">
+        <a class="btn btn-ghost" href="https://vk.com/harlempark" target="_blank" rel="noopener">VK</a>
+        <a class="btn" href="tel:+79292021805">+7 929 202-18-05</a>
+      </div>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Детейлинг-центр Harlem park</h1>
+        <p>Профессиональный уход за автомобилем в Екатеринбурге: мойка, полировка, защита ЛКП, химчистка салона, броня фар, шумоизоляция и другие услуги детейлинга.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#lead">Оставить заявку</a>
+          <a class="btn btn-ghost" href="tel:+79292021805">Позвонить</a>
+        </div>
+        <div class="hero-meta">
+          <span>Ялтинский переулок, 8</span>
+          <span>Ежедневно 10:00–22:00</span>
+          <span>Рейтинг 5.0 • 73 отзыва</span>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="assets/photos/work-1.jpg" alt="Harlem park — работы по детейлингу" loading="lazy">
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-head">
+        <span class="eyebrow">Услуги</span>
+        <h2>Основные направления</h2>
+        <p>Комплексный уход за кузовом и салоном. Точные цены определяются по автомобилю и объёму работ — просим рассчитать стоимость по заявке.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card">
+          <h3>Детейлинг и уход</h3>
+          <p>Детейлинг-мойка, обезжиривание, коррекция и поддерживающий уход.</p>
+        </article>
+        <article class="service-card">
+          <h3>Полировка кузова</h3>
+          <p>Восстановительная и защитная полировка для возвращения блеска и удаления мелких дефектов.</p>
+        </article>
+        <article class="service-card">
+          <h3>Защита ЛКП</h3>
+          <p>Керамические покрытия, нанозащита, бронирование антигравийной плёнкой.</p>
+        </article>
+        <article class="service-card">
+          <h3>Химчистка салона</h3>
+          <p>Глубокая химчистка, озонирование, уход за тканью, кожей и пластиком.</p>
+        </article>
+        <article class="service-card">
+          <h3>Броня фар и оптики</h3>
+          <p>Защита фар полиуретановой плёнкой от сколов и помутнения.</p>
+        </article>
+        <article class="service-card">
+          <h3>Шумоизоляция</h3>
+          <p>Профессиональная шумо- и виброизоляция кузова для комфорта в поездках.</p>
+        </article>
+        <article class="service-card">
+          <h3>Мойка и комплекс</h3>
+          <p>Классика и расширенные комплексы с детейлинг-акцентом.</p>
+        </article>
+        <article class="service-card">
+          <h3>Доп. услуги</h3>
+          <p>Подбор и расчёт под конкретный автомобиль. Всегда индивидуальный подход.</p>
+        </article>
+      </div>
+      <p class="note">Цены — по запросу. Оставьте заявку, мы рассчитаем стоимость за 15–20 минут.</p>
+    </section>
+
+    <section id="works">
+      <div class="section-head">
+        <span class="eyebrow">Наши работы</span>
+        <h2>Примеры работ из практики</h2>
+        <p>Фотографии реальных работ Harlem park — результат внимательной работы и аккуратности.</p>
+      </div>
+      <div class="gallery">
+        <figure class="gallery-item"><img src="assets/photos/work-1.jpg" alt="Работа Harlem park 1" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-2.jpg" alt="Работа Harlem park 2" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-3.jpg" alt="Работа Harlem park 3" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-4.jpg" alt="Работа Harlem park 4" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-5.jpg" alt="Работа Harlem park 5" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-6.jpg" alt="Работа Harlem park 6" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-7.jpg" alt="Работа Harlem park 7" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-8.jpg" alt="Работа Harlem park 8" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-9.jpg" alt="Работа Harlem park 9" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-10.jpg" alt="Работа Harlem park 10" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-11.jpg" alt="Работа Harlem park 11" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="assets/photos/work-12.jpg" alt="Работа Harlem park 12" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="section-head">
+        <span class="eyebrow">Отзывы</span>
+        <h2>Нас рекомендуют</h2>
+        <p>Реальные отзывы клиентов с 2ГИС — 5.0 из 73.</p>
+      </div>
+      <div class="reviews-grid">
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Хорошие ребята и цены нормальные</p>
+          <span class="review-author">Анатолий Васильев</span>
+        </article>
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Машину моют класс вообще! Жалко очень, что переехали, но за ними на другой конец города поеду! Большие молодцы! Всем рекомендую!</p>
+          <span class="review-author">Мария Суслова</span>
+        </article>
+        <article class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Обратился к ребятам с задачей оклеить бронёй переднюю часть автомобиля. Работа была выполнена быстро и качественно, проконсультировали по всем вопросам.</p>
+          <span class="review-author">Игорь Андреевич</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="lead" id="lead">
+      <div class="lead-inner">
+        <div class="section-head">
+          <span class="eyebrow">Заявка</span>
+          <h2>Рассчитать стоимость</h2>
+          <p>Напишите автомобиль, интересующие услуги и контакт для связи. Ответим в рабочее время: ежедневно 10:00–22:00.</p>
+        </div>
+        <form class="lead-form" id="leadForm" novalidate>
+          <div class="form-row">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться">
+          </div>
+          <div class="form-row">
+            <label for="phone">Телефон или мессенджер</label>
+            <input id="phone" name="phone" type="text" autocomplete="tel" required placeholder="+7 ___ ___-__-__">
+          </div>
+          <div class="form-row">
+            <label for="car">Автомобиль</label>
+            <input id="car" name="car" type="text" placeholder="Марка, модель, год">
+          </div>
+          <div class="form-row">
+            <label for="service">Интересующая услуга</label>
+            <select id="service" name="service">
+              <option value="">Выберите</option>
+              <option value="детейлинг">Детейлинг / уход</option>
+              <option value="полировка">Полировка кузова</option>
+              <option value="защита лкп">Защита ЛКП / антигравийная плёнка</option>
+              <option value="химчистка">Химчистка салона</option>
+              <option value="броня фар">Броня фар</option>
+              <option value="шумоизоляция">Шумоизоляция</option>
+              <option value="мойка">Мойка</option>
+              <option value="другое">Другое</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="msg">Пожелания</label>
+            <textarea id="msg" name="msg" placeholder="Коротко опишите задачу"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit">Отправить заявку</button>
+            <a class="btn btn-ghost" href="https://wa.me/79292021805?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%B2%20Harlem%20park." target="_blank" rel="noopener">Написать в WhatsApp</a>
+          </div>
+          <p class="form-note">Нажимая «Отправить», вы соглашаетесь на обработку персональных данных.</p>
+          <p class="form-note" id="formStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <div class="section-head">
+        <span class="eyebrow">Контакты</span>
+        <h2>Как нас найти</h2>
+      </div>
+      <div class="contacts-grid">
+        <article class="contact-card">
+          <h3>Адрес</h3>
+          <p>Екатеринбург, Ялтинский переулок, 8</p>
+          <p>Ежедневно 10:00–22:00</p>
+        </article>
+        <article class="contact-card">
+          <h3>Телефон</h3>
+          <a href="tel:+79292021805">+7 929 202-18-05</a>
+          <a href="https://wa.me/79292021805" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://vk.com/harlempark" target="_blank" rel="noopener">ВКонтакте</a>
+        </article>
+        <article class="contact-card">
+          <h3>2ГИС</h3>
+          <a href="https://2gis.ru/ekaterinburg/firm/70000001116699839" target="_blank" rel="noopener">Открыть в 2ГИС</a>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 Harlem park, детейлинг-центр. Екатеринбург, Ялтинский переулок, 8.</p>
+    <p>Сайт создан для демонстрации. Цены не являются публичной офертой и могут меняться.</p>
+  </footer>
+  <script>
+    const form = document.getElementById('leadForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.phone.value.trim()) {
+        status.textContent = 'Укажите телефон или способ связи.';
+        form.phone.focus();
+        return;
+      }
+      const data = {
+        source: 'harlem-park-site',
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        car: form.car.value.trim(),
+        service: form.service.value.trim(),
+        msg: form.msg.value.trim(),
+        url: location.href
+      };
+      status.textContent = 'Отправляем заявку...';
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          status.textContent = 'Заявка отправлена. Спасибо! Мы свяжемся с вами.';
+          form.reset();
+        } else {
+          throw new Error('bad status');
+        }
+      } catch (err) {
+        const tel = '+79292021805';
+        const text = encodeURIComponent(`Заявка с сайта Harlem park. Имя: ${data.name||'-'}. Телефон: ${data.phone||'-'}. Авто: ${data.car||'-'}. Услуга: ${data.service||'-'}. Сообщение: ${data.msg||'-'}. Ссылка: ${data.url}`);
+        window.location.href = `tel:${tel}`;
+        status.textContent = 'Не удалось отправить онлайн. Откроется звонок — наберите или напишите нам в WhatsApp/VK.';
+      }
+    });
+  </script>
+</body>
+</html>
